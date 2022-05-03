@@ -31,7 +31,7 @@
   e-mail não informado
   </c:if>
   </td>
-  <td><a href="excluir?ra=${aluno.ra}">excluir</a></td>
+  <td><a href="ServletControle?ra=${aluno.ra}&op=Excluir">excluir</a></td>
   <td><a href="alterar?ra=${aluno.ra}">alterar</a></td>
 </tr>
 </c:forEach>
