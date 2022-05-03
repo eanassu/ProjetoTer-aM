@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.vemprafam.dao.DaoAluno;
+import br.vemprafam.pojo.Aluno;
 
 /**
- * Servlet implementation class ServletExclusao
+ * Servlet implementation class ServletAlterar
  */
-@WebServlet("/excluir")
-public class ServletExclusao extends HttpServlet {
+@WebServlet("/alterar")
+public class ServletAlterar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletExclusao() {
+    public ServletAlterar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +33,9 @@ public class ServletExclusao extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int ra = Integer.parseInt(request.getParameter("ra"));
 		DaoAluno dao = new DaoAluno();
-		RequestDispatcher rd;
-		dao.excluirAluno(ra);
-		rd = request.getRequestDispatcher("/alunos1.jsp");
+		Aluno aluno = dao.buscarPeloRa(ra);
+		request.setAttribute("aluno", aluno);
+		RequestDispatcher rd = request.getRequestDispatcher("/alterar.jsp");
 		rd.forward(request, response);
 	}
 

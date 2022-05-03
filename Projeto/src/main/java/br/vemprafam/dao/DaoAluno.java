@@ -70,4 +70,39 @@ public class DaoAluno {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public Aluno buscarPeloRa( int ra ) {
+		Aluno result = null;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(
+				"SELECT RA, NOME, DATANASCIMENTO, RENDA, EMAIL FROM ALUNOS WHERE RA=?");
+			pstmt.setInt(1, ra);
+			ResultSet rs = pstmt.executeQuery();
+			if ( rs.next() ) {
+				result =  new Aluno( rs.getInt("RA"),
+						      rs.getString("NOME"), rs.getDate("DATANASCIMENTO"),
+						      rs.getDouble("RENDA"), rs.getString("EMAIL"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return result;
+	}
+	
+	public void alterarAluno( Aluno aluno ) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(
+				"UPDATE alunos SET nome=?,dataNascimento=?,renda=?,email=? WHERE ra=?");
+			pstmt.setString(1, aluno.getNome());
+			pstmt.setDate(2, new java.sql.Date(aluno.getDataNascimento().getTime()));
+			pstmt.setDouble(3, aluno.getRenda());
+			pstmt.setString(4, aluno.getEmail());
+			pstmt.setInt(5, aluno.getRa());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }
