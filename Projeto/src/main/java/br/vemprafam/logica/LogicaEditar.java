@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.vemprafam.dao.DaoAluno;
 import br.vemprafam.pojo.Aluno;
 
-public class LogicaCadastro extends Logica{
+public class LogicaEditar extends Logica {
 
+	@Override
 	public String executar(HttpServletRequest request, HttpServletResponse response) {
 		int ra = Integer.parseInt(request.getParameter("ra"));
 		String nome = request.getParameter("nome");
@@ -27,8 +28,8 @@ public class LogicaCadastro extends Logica{
 		String email = request.getParameter("email");
 		Aluno aluno = new Aluno(ra,nome,dataNascimento,renda,email);
 		DaoAluno dao = new DaoAluno();
-		dao.inserirAluno(aluno);
-		return "/WEB-INF/jsp/aluno-cadastrado.jsp";
+		dao.alterarAluno(aluno);
+		return "/ServletControle?op=Listar";
 	}
-	
+
 }

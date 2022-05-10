@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.vemprafam.dao.DaoAluno;
 
-public class LogicaExcluir extends Logica {
+public class LogicaListar extends Logica {
 
 	@Override
 	public String executar(HttpServletRequest request, HttpServletResponse response) {
-		int ra = Integer.parseInt(request.getParameter("ra"));
-		DaoAluno dao = new DaoAluno();
-		dao.excluirAluno(ra);
-		return "/ServletControle?op=Listar";
+		request.setAttribute("dao", new DaoAluno());
+		return "/WEB-INF/jsp/alunos1.jsp";
 	}
 
 }

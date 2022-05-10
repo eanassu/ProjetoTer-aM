@@ -15,7 +15,8 @@
   </script>
 </head>
 <body>
-<form action="editar" method="get">
+<form action="ServletControle" method="get">
+<input type="hidden" name="op" value="Editar">
 RA:<input type="text" name="ra" value="${aluno.ra}" readonly/><br/>
 Nome:<input type="text" name="nome" value="${aluno.nome}"><br/>
 data de nascimento:<input type="text" name="dataNascimento" id="datepicker" value="${aluno.dataNascimentoFormatada}"/><br/>

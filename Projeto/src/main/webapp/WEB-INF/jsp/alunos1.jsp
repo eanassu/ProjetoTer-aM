@@ -12,7 +12,6 @@
 
 <c:import url="cabecalho.jsp"/>
 
-<jsp:useBean id="dao" class="br.vemprafam.dao.DaoAluno"/>
 <table border="1">
 <tr>
 <th>RA</th><th>nome</th><th>Data de Nascimento</th><th>Renda</th><th>e-mail</th>
@@ -32,7 +31,7 @@
   </c:if>
   </td>
   <td><a href="ServletControle?ra=${aluno.ra}&op=Excluir">excluir</a></td>
-  <td><a href="alterar?ra=${aluno.ra}">alterar</a></td>
+  <td><a href="ServletControle?ra=${aluno.ra}&op=Alterar">alterar</a></td>
 </tr>
 </c:forEach>
 </table>
